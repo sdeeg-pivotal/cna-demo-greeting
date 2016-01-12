@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${HOME}/dev/app-config
+#          uri: https://github.com/sdeeg-pivotal/app-config
