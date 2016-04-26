@@ -75,7 +75,7 @@ spring:
 Install Polymer into the app at root (static)
 ```
 bower init
-bower install --save Polymer/polymer#^1.2.0
+bower install --save Polymer/polymer
 bower install --save PolymerElements/iron-ajax
 bower install --save PolymerElements/paper-button
 ```
