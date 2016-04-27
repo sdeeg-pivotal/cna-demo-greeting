@@ -33,15 +33,15 @@ pom.xml
 <!-- add to dependencies block -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
-		</dependency>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>		
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Brixton.RC2</version>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Brixton.M4</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
