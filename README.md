@@ -1,6 +1,6 @@
-##CNA Demo Notes
+#CNA Demo Notes
 
-#1 Create Service
+##1 Create Service
 
 1. Create Boot project with Initializer: Web, Actuator, Config Client, Eureka Client
 2. Add controller
@@ -8,16 +8,17 @@
 4. Create Config class to generate Greeting
 5. Add property
 
-##1.1 Actuator
+###1.1 Actuator
 
 1. Add Actuator to pom
 2. Look at env
 
-##1.2 Properties and Profiles
+###1.2 Properties and Profiles
 
 1. Change property at CLI with flag
 
-#2 Setup Config Server
+
+##2 Setup Config Server
 
 1. Create cna-config project: Web, Config Server
 2. Enable server with annotation
@@ -57,7 +58,7 @@ spring:
       uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
 ```
 
-#Eureka Server
+##3 Setup Service Registry
 
 1. Create cna-registry project: Eureka Server, Config Client
 2. Enable server in server app with annotation.
@@ -74,7 +75,7 @@ spring:
       uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
 ```
 
-#CNA Client UI
+##4 CNA Client UI
 
 1. Create cna-ui project: Web, Actuator, Config Client, Zuul, Eureka Discovery, Hystrix
 2. Set server.port
@@ -83,11 +84,8 @@ spring:
 
 CnaUiApplication.java
 ```
-@SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
-public class CnaUiApplication {
-...
 ```
 
 bootstrap.yml
@@ -100,7 +98,7 @@ spring:
       uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
 ```
 
-##Create the UI
+###4.1 Create the UI
 
 5. Install Polymer into the app at root (static)
 
@@ -140,5 +138,41 @@ Create ClientController.java
     public String message() {
       return (new RestTemplate()).getForObject("http://localhost:8080/greeting", String.class);
     }
+```
+
+##5 SpringCloud DataFlow Intro
+
+1. Create df-server project: Local DataFlow Server
+2. Add @EnableDataFlowServer
+3. Create df-shell project: Data Flow Shell
+4. Add @EnableDataFlowShell
+5. Create df-logging-sink: Kafka Stream
+6. Add @EnableBinding(Sink.class)
+7. Add code endpoing
+
+```
+  @MessageEndpoint
+  public static class LoggingMessageEndpoint {
+
+    @ServiceActivator(inputChannel = Sink.INPUT)
+    public void logIncomingMessages(
+        @Payload String msg,
+        @Headers Map<String, Object> headers) {
+
+      System.out.println(msg);
+      headers.entrySet().forEach(e -> System.out.println(e.getKey() + '=' + e.getValue()));
+
+    }
+  }
+  ```
+
+8. Register the module
+9. Create the Stream
+10. Deploy it!
+
+```
+module register --name custom-log --type sink --uri maven://io.pivotal.pa:df-logging-sink:jar:0.0.1-SNAPSHOT
+stream create --name time-to-log --definition 'time | custom-log'
+stream deploy --name time-to-log
 ```
 
