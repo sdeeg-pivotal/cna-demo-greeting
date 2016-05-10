@@ -10,6 +10,6 @@ Demo 2: [Front end application](demo2.md)
 
 Single page application to consume the Greeting service.  Adds service registry, proxy, and circuit breaker.
 
-Demo 3: [Simple Data Micro-service](demo2.md)
+Demo 3: [Simple Data Micro-service](demo3.md)
 
 Create a simple data micro-service, i.e. one that is triggered asynchronously via a "message" system.

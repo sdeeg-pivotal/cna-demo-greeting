@@ -1,6 +1,6 @@
 #Build a Micro-Service
 
-The goal of this demo is to build a basic micro-service with externalized configuration.
+The goal of this demo is show how to build a basic micro-service with an externalized configuration.
 
 ##1 Create Service
 
@@ -59,3 +59,43 @@ spring:
     config:
       uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
 ```
+##3 Deploy to CloudFoundry with Spring Cloud Config Server
+
+1. Modify the POM to include the Spring Cloud Service connector.
+
+```
+    <dependency>
+      <groupId>io.pivotal.spring.cloud</groupId>
+      <artifactId>spring-cloud-services-starter-config-client</artifactId>
+    </dependency>
+```
+and
+```
+  <dependencyManagement>
+    <dependencies>
+    ...
+        <dependency>
+            <groupId>io.pivotal.spring.cloud</groupId>
+            <artifactId>spring-cloud-services-starter-parent</artifactId>
+            <version>1.0.2.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+```
+
+(remove or comment out spring-cloud-starter-config)
+
+2. Create a manifest
+
+manifest.yml
+```
+---
+applications:
+- name: cna-service
+  host: cna-service
+  memory: 512M
+  instances: 1
+  path: ./target/cna-service-0.0.1-SNAPSHOT.jar
+```
+
+3. cf push
