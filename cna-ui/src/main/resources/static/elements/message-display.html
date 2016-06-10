@@ -18,7 +18,7 @@
                url="/cna-service/greeting"
                on-response="updateData"></iron-ajax>
     <div class="bubble">
-    Message: <span>[[mydata]]</span><br>
+    Message: <span>[[message]]</span><br>
     <paper-button on-click="getData">Get That Message</paper-button>
     </div>
   </template>
@@ -28,7 +28,7 @@
       is: "message-display",
 
       properties: {
-    	mydata: {
+    	message: {
           value: "argle flargle"
         }
       },
@@ -37,7 +37,7 @@
       },
       updateData: function(theResponse) {
     	  console.log(theResponse);
-    	  this.mydata = theResponse.detail.response.greeting;
+    	  this.message = theResponse.detail.response.greeting;
       }
     });
   </script>
