@@ -15,51 +15,6 @@
   
   <template>
     <iron-ajax id="dataService"
-               url="/message"
-               on-response="updateData"></iron-ajax>
-    <div class="bubble">
-    Message: <span>[[message]]</span><br>
-    <paper-button on-click="getData">Get That Message</paper-button>
-    </div>
-  </template>
-
-  <script>
-    Polymer({
-      is: "message-display",
-
-      properties: {
-      message: {
-          value: "argle flargle"
-        }
-      },
-      getData: function() {
-        this.$.dataService.generateRequest();
-      },
-      updateData: function(theResponse) {
-        console.log(theResponse);
-        this.message = theResponse.detail.response.greeting;
-      }
-    });
-  </script>
-
-</dom-module>
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-
-<dom-module id="message-display">
-
-  <style>
-  div.bubble {
-    margin: 20px;
-    padding: 20px 20px;
-    border-radius: 20px;
-    background-color: #f1f1f1;
-  }
-  </style>
-  
-  <template>
-    <iron-ajax id="dataService"
                url="/cna-service/greeting"
                on-response="updateData"></iron-ajax>
     <div class="bubble">

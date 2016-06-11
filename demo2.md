@@ -1,6 +1,6 @@
 #Build a UI app that consumes Micro-services
 
-This exercise builds on the previous one.  We create an application to deliver a JavaScript based 
+This exercise builds on the projects build in demo1.  We create an application to deliver a JavaScript based 
 UI to an end client, and then proxy access to the micro-service via discovery from a service registry.  Next
 we add the Hystrix circuit breaker to create fallback behavior if the service is not available.
 
@@ -23,8 +23,8 @@ spring:
 
 ##4 Register the service
 
-```
 In pom.xml make sure to uncomment:
+```
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-eureka</artifactId>
