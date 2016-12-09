@@ -9,9 +9,9 @@ cna-config application.yml needs to be modified to point to your git repo.  I us
 
 Apps can come up in any order except for cna-config which needs to come up first (so the rest of the apps can get config from it.)
 
-To use on PCF create services cna-registry, cna-config, and hystrix-dashboard and push the apps.  If you use other service names, change the names in the manifest.yml's.
+To use on PCF create services scs-registry, scs-config, and hystrix-dashboard and push the apps.  If you use other service names, change the names in the manifest.yml's.
 
-To use Zipkin on PCF just deploy the app with cf push.  If you change the app name, make sure to update the manifest.yml's in cna-service and cna-ui.
+To use Zipkin on PCF just deploy the app with cf push.  If you change the zipkin server hostname name, make sure to update the manifest.yml's in cna-service and cna-ui.
 
 (old stuff)
 
