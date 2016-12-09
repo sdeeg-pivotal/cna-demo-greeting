@@ -1,0 +1,8 @@
+---
+applications:
+- name: hello-app
+  host: hello-app-uniqueName
+  memory: 512M
+  instances: 1
+  path: ./target/hello-app-0.0.1-SNAPSHOT.jar
+

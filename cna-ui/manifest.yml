@@ -1,0 +1,14 @@
+---
+applications:
+- name: cna-ui-smd
+  memory: 1024M
+  instances: 1
+  path: target/cna-ui-0.0.1-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  services:
+    - scs-registry
+    - scs-config
+    - hystrix-dashboard
+  env:
+    ZIPKIN_SERVER_URI: http://zipkin-http-smd.cfapps.io
+  

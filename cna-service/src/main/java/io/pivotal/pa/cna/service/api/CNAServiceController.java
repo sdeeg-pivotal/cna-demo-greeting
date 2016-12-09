@@ -1,7 +1,6 @@
 package io.pivotal.pa.cna.service.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.pivotal.pa.cna.service.dom.Greeting;
@@ -9,10 +8,13 @@ import io.pivotal.pa.cna.service.dom.Greeting;
 @RestController
 public class CNAServiceController {
 
-	@Autowired
-	Greeting theGreeting;
+	private final Greeting theGreeting;
 	
-	@RequestMapping("/greeting")
+	public CNAServiceController(Greeting theGreeting) {
+		this.theGreeting = theGreeting;
+	}
+
+	@GetMapping("/greeting")
 	public Greeting greeting() {
 		return theGreeting;
 	}

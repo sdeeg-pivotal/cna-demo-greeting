@@ -1,0 +1,10 @@
+app:
+  greeting: Hello, Dev World!
+#spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:9999
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:9761/eureka/

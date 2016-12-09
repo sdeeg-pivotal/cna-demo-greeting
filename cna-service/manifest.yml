@@ -1,0 +1,13 @@
+---
+applications:
+- name: cna-service-smd
+  memory: 512M
+  instances: 1
+  path: target/cna-service-0.0.1-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  services:
+    - scs-registry
+    - scs-config
+  env:
+    ZIPKIN_SERVER_URI: http://zipkin-http-smd.cfapps.io
+    

@@ -1,2 +1,14 @@
 app:
   greeting: Hello, World!
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
+spring:
+  sleuth:
+    sampler:
+      percentage: 1.0 #100%
+  zipkin:
+    base-url: ${ZIPKIN_SERVER_URI:http://localhost:9411}

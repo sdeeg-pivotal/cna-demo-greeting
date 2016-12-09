@@ -1,0 +1,7 @@
+---
+applications:
+- name: cna-zipkin-server
+  memory: 1G
+  instances: 1
+  path: target/cna-zipkin-server-0.0.1-SNAPSHOT.jar
+  

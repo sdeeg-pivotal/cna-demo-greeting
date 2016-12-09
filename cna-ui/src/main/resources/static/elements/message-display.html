@@ -5,21 +5,24 @@
 <dom-module id="message-display">
 
   <style>
-	div.bubble {
-		margin: 20px;
-		padding: 20px 20px;
-		border-radius: 20px;
-		background-color: #f1f1f1;
-	}
+  div.bubble {
+    margin: 20px;
+    padding: 20px 20px;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    width: 15em;
+  }
   </style>
   
   <template>
     <iron-ajax id="dataService"
-               url="/cna-service/greeting"
+               url="/message"
                on-response="updateData"></iron-ajax>
     <div class="bubble">
-    Message: <span>[[message]]</span><br>
-    <paper-button on-click="getData">Get That Message</paper-button>
+    <p>Message: <span>[[message]]</span></p>
+    <p>
+      <center><paper-button on-click="getData" raised>Get The Message</paper-button></center>
+    </p>
     </div>
   </template>
 
@@ -36,7 +39,7 @@
     	  this.$.dataService.generateRequest();
       },
       updateData: function(theResponse) {
-    	  console.log(theResponse);
+    	  console.log(JSON.stringify(theResponse.detail.response));
     	  this.message = theResponse.detail.response.greeting;
       }
     });
